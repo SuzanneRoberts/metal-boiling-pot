@@ -29,7 +29,7 @@ class arc(object):
         self.e      = electronCharge
         self.U_an   = anodeVoltageDrop
         self.dh     = arcAirEnthalpyChange
-        self.k_B    = 1.38064852e-23            # J/K, Boltzmann konstante
+        self.k_B    = 1.38064852e-23            # J/K, Boltzmann constant
         self.R      = 8.314459848               # J/mol.K, universal gas constant
         
 def arcShape(theI, theL, theArc):
@@ -130,7 +130,7 @@ def arcHeatDistribution(theI1, theL1, theArc1):
     Q_P_conv = P_conv / P_a * 100
     
     #============================================#
-    # Share of heat dissipated by arc radiontion #
+    # Share of heat dissipated by arc radiation #
     #============================================#
     
     Q_P_r = P_r / P_a * 100
@@ -270,17 +270,17 @@ def plotPowerAgainstCurrent(theI, theL, theArc, markerStr = '-', varStr = 'varSt
 #=============================================================================#
 
 # best guess arc        
-bga = arc(3500,           # A/cm^2, Stromdichte des Brennflecks, Logar et al. zitiert Reynolds 2012
-          0.0175,         # Ohm.cm, arc resistivity, Logar et al. zitiert Reynolds and Jones 2004
+bga = arc(3500,           # A/cm^2, Current density at the cathode spot, Logar et al. citing Reynolds 2012
+          0.0175,         # Ohm.cm, arc resistivity, Logar et al. citing Reynolds and Jones 2004
           16136,          # K, estimated average arc temperature, Logar et al.
           1200e3,         # Pa, estimated average arc pressure, Logar et al.
           4e-7 * np.pi,   # H/m, magnetic permeability of free space
           0.028971,       # kg/mol, molar mass of air
           4.2,            # V, work function for the anode, Bowman & Krüger, p12
           1.602e-19,      # J, electron charge (1 eV)
-          6.6,             # V, anode voltage drop, Echterhof Folien: 10 V bis 30 V
-          130e5 - 27.4e5)    # J/kg, specific enthalpy of the arc, using air at average arc temperature, Fig 8, Sanchez et al. 2009
-                            # J/kg, specific enthalpy of the air surrounding the arc @ average air temperature, 1200 K (Gruber, 2015), Fig 8, Sanchez et al. 2009
+          6.6,            # V, anode voltage drop, Echterhof Folien: 10 V bis 30 V
+          130e5 - 27.4e5) # J/kg, specific enthalpy of the arc, using air at average arc temperature, Fig 8, Sanchez et al. 2009
+                          # J/kg, specific enthalpy of the air surrounding the arc @ average air temperature, 1200 K (Gruber, 2015), Fig 8, Sanchez et al. 2009
 
 # sensitivity study set-up
 indVar   = 'current'
@@ -296,7 +296,7 @@ v3str   = str(v3) + vUnitStr
 
 if indVar == 'length':                            
    
-    I = 15000                 #A, arc current
+    I = 15000                   # A, arc current
     L = np.linspace(5, 100, 75) # np.array([5, 20, 80]) #    #cm, arc length
     
     bga.T = v1
@@ -343,8 +343,6 @@ if indVar == 'current':
     print('maxDiffDown100', np.max(np.abs(Prad100v2 - Prad100v1)))
     print('maxDiffUp100', np.max(np.abs(Prad100v2 - Prad100v3)))
 
-#### classes - lees maandag verder
-#### http://greenteapress.com/ModSimPy/ModSimPy.pdf
     
 # unittests
 class testArc(unittest.TestCase):
